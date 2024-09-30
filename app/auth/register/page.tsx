@@ -1,9 +1,9 @@
 import React from 'react'
 
-import LoginForm from '@components/auth/loginForm'
+import RegisterForm from '@components/auth/registerForm'
 
-const LoginPage = () => {
-    return <LoginForm />
+const RegisterPage = () => {
+    return <RegisterForm />
 }
 
-export default LoginPage
+export default RegisterPage

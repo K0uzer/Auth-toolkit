@@ -20,7 +20,7 @@ import { Input } from '@components/ui/input'
 import { Button } from '@components/ui/button'
 import FormError from '@components/formError'
 import FormSuccess from '@components/formSuccess'
-import { login } from 'actions/login'
+import { register } from 'actions/register'
 
 const RegisterForm = () => {
     const [isPending, startTransition] = useTransition()
@@ -29,6 +29,7 @@ const RegisterForm = () => {
         defaultValues: {
             email: '',
             password: '',
+            name: '',
         },
     })
     const [error, setError] = useState<string | undefined>('')
@@ -39,7 +40,7 @@ const RegisterForm = () => {
         setSuccess('')
 
         startTransition(() => {
-            login(values).then((data) => {
+            register(values).then((data) => {
                 setError(data.error)
                 setSuccess(data.success)
             })
@@ -59,6 +60,23 @@ const RegisterForm = () => {
                     className="space-y-6"
                 >
                     <div className="space-y-4">
+                        <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Name</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            {...field}
+                                            disabled={isPending}
+                                            placeholder="John Doe"
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
                         <FormField
                             control={form.control}
                             name="email"
@@ -104,7 +122,7 @@ const RegisterForm = () => {
                         type="submit"
                         className="w-full"
                     >
-                        Login
+                        Create an account
                     </Button>
                 </form>
             </Form>
