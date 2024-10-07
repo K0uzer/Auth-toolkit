@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth'
 
-import authConfig from 'auth.config'
+import authConfig from './auth.config'
 import {
     DEFAULT_LOGIN_REDIRECT,
     apiAuthPrefix,
@@ -10,7 +10,7 @@ import {
 
 const { auth } = NextAuth(authConfig)
 
-export default auth((reg: { auth?: any; nextUrl?: any }) => {
+export default auth((reg) => {
     const { nextUrl } = reg
 
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
